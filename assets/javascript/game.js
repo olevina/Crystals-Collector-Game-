@@ -9,12 +9,14 @@ $(document).ready(function () {
     var win = 0;
     var loss = 0;
 
+  
 
     //adds value of each crystal to userTotal
     $("#clickCrystal1").on("click", function () {
         crystal1Click = 40;
         userTotal = userTotal + crystal1Click;
         $('#totalScore').text(userTotal);
+        console.log(randomnumber);
         console.log(userTotal);
         winsAndLosses();
 
@@ -23,6 +25,8 @@ $(document).ready(function () {
         crystal2Click = 20;
         userTotal = userTotal + crystal2Click;
         $('#totalScore').text(userTotal);
+        console.log(randomnumber);
+        console.log(userTotal);
         winsAndLosses();
 
     });
@@ -30,6 +34,8 @@ $(document).ready(function () {
         crystal3Click = 5;
         userTotal = userTotal + crystal3Click;
         $('#totalScore').text(userTotal);
+        console.log(randomnumber);
+        console.log(userTotal);
         winsAndLosses();
 
     });
@@ -37,44 +43,53 @@ $(document).ready(function () {
         crystal4Click = 1;
         userTotal = userTotal + crystal4Click;
         $('#totalScore').text(userTotal);
+        console.log(randomnumber);
+        console.log(userTotal);
         winsAndLosses();
     });
 
 
 
     //generates random number in randomNumber div in html on load. 
+
     var minNumber = 19;
     var maxNumber = 120;
     var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);
     $('#randomNumber').html(randomnumber);
-    return false;
+    //return false;
 
 
     //updates wins and losses
     function winsAndLosses() {
 
-        if (randomnumber === userTotal) {
+        if  (randomnumber < userTotal) {
+            loss++;
+            $('#losses').text(loss);
+            reset();
+        }
+
+        else if (randomnumber === userTotal) {
             win++;
             $('#wins').text(win);
             reset();
         }
 
-        else if (randomnumber < userTotal) {
-            loss++;
-            $('#losses').text(loss);
-            reset();
-        }
+           
+        
+        console.log("made it to wins function");
+        console.log(randomnumber);
+        console.log(userTotal);
     }
 
     //function to reset total score and generate another random number when you win or loose
     function reset() {
         userTotal = 0;
         $('#totalScore').text(userTotal);
-        var minNumber = 19;
-        var maxNumber = 120;
-        var randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);
+        minNumber = 19;
+        maxNumber = 120;
+        randomnumber = Math.floor(Math.random() * (maxNumber + 1) + minNumber);
         $('#randomNumber').html(randomnumber);
-        return false;
+        //return false;
     }
 
 
